@@ -1,4 +1,8 @@
-#include <GL/glut.h>
+#include <iostream>
+#include <cstdlib>
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 #include "value_sampler.h"
 
@@ -57,23 +61,48 @@ void resize(int w, int h)
 	glViewport(0, 0, w, h);
 	glLoadIdentity();
 	glOrtho(-w / 200.0, w / 200.0, -h / 200.0, h / 200.0, -1.0, 1.0);
-//	glOrtho(-1, 1, -1, 1, -1.0, 1.0);
+	//	glOrtho(-1, 1, -1, 1, -1.0, 1.0);
 }
 
-
-int main(int argc, char* argv[])
+int main()
 {
-	glutInitWindowPosition(100, 100);
-	glutInitWindowSize(400, 400);
+	if (glfwInit() == GL_FALSE)
+	{
+		std::cerr << "Can't initialize GLFW" << std::endl;
+		return 1;
+	}
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA);
-	glutCreateWindow(argv[0]);
-	glutDisplayFunc(display);
-	glutReshapeFunc(resize);
+	std::atexit(glfwTerminate);
 
-	init();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	glutMainLoop();
-	return 0;
+	GLFWwindow* const window(glfwCreateWindow(640, 480, "Hello!", NULL, NULL));
+
+	if (window == NULL)
+	{
+		std::cerr << "Can't create GLFW window." << std::endl;
+		return 1;
+	}
+
+	glfwMakeContextCurrent(window);
+
+	// GLEW initialization
+	glewExperimental = GL_TRUE;
+	if (glewInit() != GLEW_OK)
+	{
+		std::cerr << "Can't initialize GLEW" << std::endl;
+		return 1;
+	}
+
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+
+	while (glfwWindowShouldClose(window) == GL_FALSE)
+	{
+		std::cout << "HOGE";
+		glfwSwapBuffers(window);
+		glfwWaitEventsTimeout(1);
+	}
 }
