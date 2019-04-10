@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GLObject.h" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="main001.cc" />
   </ItemGroup>

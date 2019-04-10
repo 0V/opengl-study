@@ -27,6 +27,9 @@
     <ClCompile Include="main001.cc">
       <Filter>ソース ファイル\old</Filter>
     </ClCompile>
+    <ClCompile Include="GLObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="value_sampler.h">
