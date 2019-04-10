@@ -16,6 +16,9 @@
     <Filter Include="ソース ファイル\old">
       <UniqueIdentifier>{0ce62acb-9294-43ae-b320-524fa4e645ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\shaders">
+      <UniqueIdentifier>{63c0ee17-bfa0-457f-85fe-65e53f4a8ab1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cc">
@@ -29,8 +32,17 @@
     <ClInclude Include="value_sampler.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="GLRender.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="shaders\point.vert">
+      <Filter>ソース ファイル\shaders</Filter>
+    </None>
+    <None Include="shaders\point.frag">
+      <Filter>ソース ファイル\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
