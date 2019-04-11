@@ -1,13 +1,11 @@
 #pragma once
 #include <GL/glew.h>
 
-struct Vertex
-{
+struct Vertex {
     GLfloat position[2];
 };
 
-class GLObject
-{
+class GLObject {
 private:
     GLuint vao;
     GLuint vbo;
@@ -15,8 +13,7 @@ private:
     GLObject& operator=(const GLObject& o) = delete;
 
 public:
-    GLObject(GLint size, GLsizei vertexcount, const Vertex* vertex)
-    {
+    GLObject(GLint size, GLsizei vertexcount, const Vertex* vertex) {
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
         glGenBuffers(1, &vbo);
@@ -26,15 +23,12 @@ public:
         glEnableVertexAttribArray(0);
     }
 
-    virtual ~GLObject()
-    {
+    virtual ~GLObject() {
         glDeleteBuffers(1, &vao);
         glDeleteBuffers(1, &vbo);
     }
 
-    void bind() const
-    {
+    void bind() const {
         glBindVertexArray(vao);
     }
-
 };

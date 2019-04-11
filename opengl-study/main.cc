@@ -1,7 +1,6 @@
 #include "GLRender.h"
 
-int main()
-{
+int main() {
     GLRender renderer;
-    return  renderer.render();
+    return renderer.render();
 }

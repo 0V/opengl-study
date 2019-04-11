@@ -16,24 +16,20 @@ constexpr std::string_view VertexShader = "vertex shader";
 constexpr std::string_view FragmentShader = "fragment shader";
 
 
-class GLRender
-{
+class GLRender {
 
 private:
-
     const char* ShaderParamPosition = "position";
     const char* ShaderParamFragment = "fragment";
 
     ValueSampler<double> sampler = ValueSampler<double>(-1, 1);
     ValueSampler<double> sampler01 = ValueSampler<double>(0, 1);
 
-    void display_random()
-    {
+    void display_random() {
         glClear(GL_COLOR_BUFFER_BIT);
         glColor3d(1.0, 0.0, 0.0);
         glBegin(GL_POLYGON);
-        for (size_t i = 0; i < 100; i++)
-        {
+        for (size_t i = 0; i < 100; i++) {
             glColor3d(sampler01.sample(), sampler01.sample(), sampler01.sample());
             glVertex3d(sampler.sample(), sampler.sample(), sampler.sample());
         }
@@ -41,8 +37,7 @@ private:
         glFlush();
     }
 
-    void display()
-    {
+    void display() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBegin(GL_POLYGON);
@@ -69,7 +64,7 @@ private:
         glFlush();
     }
 
-    GLboolean print_shader_info(const GLuint & shader, const std::string_view & str) {
+    GLboolean print_shader_info(const GLuint& shader, const std::string_view& str) {
 
         GLint status;
         glGetShaderiv(shader, GL_COMPILE_STATUS, &status);
@@ -90,14 +85,14 @@ private:
         return static_cast<GLboolean>(status);
     }
 
-    GLboolean print_program_info(const GLuint & program) {
+    GLboolean print_program_info(const GLuint& program) {
         GLint status;
         glGetProgramiv(program, GL_LINK_STATUS, &status);
-        if (status == GL_FALSE) std::cerr << "Link Error." << std::endl;
+        if (status == GL_FALSE)
+            std::cerr << "Link Error." << std::endl;
         GLsizei bufSize;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufSize);
-        if (bufSize > 1)
-        {
+        if (bufSize > 1) {
             std::vector<GLchar> infoLog(bufSize);
             GLsizei length;
             glGetProgramInfoLog(program, bufSize, &length, &infoLog[0]);
@@ -106,14 +101,14 @@ private:
         return static_cast<GLboolean>(status);
     }
 
-    bool read_shader_file(const std::string & file_name, std::string & dist) {
+    bool read_shader_file(const std::string& file_name, std::string& dist) {
 
-        if (file_name.empty()) return false;
+        if (file_name.empty())
+            return false;
 
         std::ifstream ifs(file_name);
 
-        if (ifs.fail())
-        {
+        if (ifs.fail()) {
             return false;
         }
         std::string str();
@@ -121,7 +116,7 @@ private:
         return true;
     }
 
-    GLuint create_program(const std::string & vsrc, const std::string & fsrc) {
+    GLuint create_program(const std::string& vsrc, const std::string& fsrc) {
 
         const GLuint program(glCreateProgram());
 
@@ -164,7 +159,7 @@ private:
         }
     }
 
-    GLuint load_program(const std::string & vert, const std::string & frag) {
+    GLuint load_program(const std::string& vert, const std::string& frag) {
         std::string vsrc, fsrc;
         const bool vstat(read_shader_file(vert, vsrc));
         const bool fstat(read_shader_file(frag, fsrc));
@@ -172,21 +167,18 @@ private:
         return (vstat && fstat) ? create_program(vsrc, fsrc) : 0;
     }
 
-    void init()
-    {
+    void init() {
         glClearColor(1.0, 1.0, 1.0, 1.0);
     }
 
-    void resize(int w, int h)
-    {
+    void resize(int w, int h) {
         glViewport(0, 0, w, h);
         glLoadIdentity();
         glOrtho(-w / 200.0, w / 200.0, -h / 200.0, h / 200.0, -1.0, 1.0);
         //	glOrtho(-1, 1, -1, 1, -1.0, 1.0);
     }
 
-    static GLuint create_object(GLuint vertices, const GLfloat(*position)[2])
-    {
+    static GLuint create_object(GLuint vertices, const GLfloat (*position)[2]) {
         GLuint vao;
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
@@ -211,10 +203,8 @@ public:
     ~GLRender() {
     }
 
-    int render()
-    {
-        if (glfwInit() == GL_FALSE)
-        {
+    int render() {
+        if (glfwInit() == GL_FALSE) {
             std::cerr << "Can't initialize GLFW" << std::endl;
             return 1;
         }
@@ -228,8 +218,7 @@ public:
 
         GLFWwindow* const window(glfwCreateWindow(640, 480, "Hello!", NULL, NULL));
 
-        if (window == NULL)
-        {
+        if (window == NULL) {
             std::cerr << "Can't create GLFW window." << std::endl;
             return 1;
         }
@@ -238,8 +227,7 @@ public:
 
         // GLEW initialization
         glewExperimental = GL_TRUE;
-        if (glewInit() != GLEW_OK)
-        {
+        if (glewInit() != GLEW_OK) {
             std::cerr << "Can't initialize GLEW" << std::endl;
             return 1;
         }
@@ -250,12 +238,11 @@ public:
 
 
         // 図形データ
-        static constexpr Vertex vertex[] =
-        {
-          { -0.5f, -0.5f },
-          {  0.5f, -0.5f },
-          {  0.5f,  0.5f },
-          { -0.5f,  0.5f }
+        static constexpr Vertex vertex[] = {
+            { -0.5f, -0.5f },
+            { 0.5f, -0.5f },
+            { 0.5f, 0.5f },
+            { -0.5f, 0.5f }
         };
 
         GLuint vbo;
@@ -265,8 +252,7 @@ public:
         glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex), vertex, GL_STATIC_DRAW);
 
 
-        while (glfwWindowShouldClose(window) == GL_FALSE)
-        {
+        while (glfwWindowShouldClose(window) == GL_FALSE) {
             glClear(GL_COLOR_BUFFER_BIT);
             glUseProgram(program);
 

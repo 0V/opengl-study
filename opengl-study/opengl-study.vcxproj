@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GLObject.h" />
+    <ClCompile Include="GLShape.cpp" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="main001.cc" />
   </ItemGroup>
@@ -133,6 +134,7 @@
     <ClInclude Include="value_sampler.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
     <None Include="packages.config" />
     <None Include="shaders\point.frag">
       <FileType>Document</FileType>
