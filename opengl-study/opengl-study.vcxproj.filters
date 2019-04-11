@@ -13,43 +13,52 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\old">
-      <UniqueIdentifier>{0ce62acb-9294-43ae-b320-524fa4e645ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\shaders">
       <UniqueIdentifier>{63c0ee17-bfa0-457f-85fe-65e53f4a8ab1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cc">
+    <ClInclude Include="objects\gl_object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\gl_shape.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\objects.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\gl_object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\gl_shape.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\objects\objects.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gl_renderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gls.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\value_sampler.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include="shaders\point.frag" />
+    <None Include="shaders\point.vert" />
+    <None Include="shaders\point2.frag" />
+    <None Include="src\shaders\point.frag" />
+    <None Include="src\shaders\point.vert" />
+    <None Include="src\shaders\point2.frag" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cc">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="main001.cc">
-      <Filter>ソース ファイル\old</Filter>
-    </ClCompile>
-    <ClCompile Include="GLObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="GLShape.cpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="value_sampler.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="GLRender.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="shaders\point.vert">
-      <Filter>ソース ファイル\shaders</Filter>
-    </None>
-    <None Include="shaders\point.frag">
-      <Filter>ソース ファイル\shaders</Filter>
-    </None>
-    <None Include=".clang-format" />
   </ItemGroup>
 </Project>
