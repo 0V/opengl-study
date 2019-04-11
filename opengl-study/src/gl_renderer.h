@@ -10,7 +10,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "objects/gl_shape.h"
+#include "objects/objects.h"
 #include "value_sampler.h"
 
 constexpr std::string_view VertexShader = "vertex shader";
@@ -246,7 +246,7 @@ public:
             { -0.5f, 0.5f }
         };
 
-        std::unique_ptr<const GLShape> shape(new GLShape(2, 4, vertex));
+        std::unique_ptr<const GLShape> shape(new GLTriangleShape(2, 4, vertex));
 
         while (glfwWindowShouldClose(window) == GL_FALSE) {
             glClear(GL_COLOR_BUFFER_BIT);

@@ -1,5 +1,5 @@
 
-#include "gl_renderer.h"
+#include "gls.h"
 
 int main() {
     GLRender renderer;

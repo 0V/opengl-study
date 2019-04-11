@@ -10,13 +10,13 @@ using GLObjectPtrConst = std::shared_ptr<const GLObject>;
 
 class GLShape {
 private:
-    GLObjectPtrConst object;
 
 protected:
+    GLObjectPtrConst object;
     const GLsizei vertex_count_;
 
 public:
-    GLShape(const GLint size, const GLsizei vertex_count, const Vertex* vertex)
+    GLShape(const GLint& size, const GLsizei& vertex_count, const Vertex* vertex)
         : object(new GLObject(size, vertex_count, vertex)),
           vertex_count_(vertex_count) {
     }
@@ -29,7 +29,5 @@ public:
         execute();
     }
 
-    virtual void execute() const {
-        glDrawArrays(GL_LINE_LOOP, 0, vertex_count_);
-    }
+    virtual void execute() const = 0;
 };
