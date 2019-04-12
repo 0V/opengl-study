@@ -51,6 +51,9 @@
     <ClInclude Include="src\objects\gl_triangle_shape.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\gl_window.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".clang-format" />
@@ -61,6 +64,7 @@
     <None Include="src\shaders\point.vert" />
     <None Include="src\shaders\point2.frag" />
     <None Include="packages.config" />
+    <None Include="CppPropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cc">

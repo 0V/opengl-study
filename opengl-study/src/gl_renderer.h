@@ -217,28 +217,14 @@ public:
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        GLFWwindow* const window(glfwCreateWindow(640, 480, "Hello!", NULL, NULL));
-
-        if (window == NULL) {
-            std::cerr << "Can't create GLFW window." << std::endl;
-            return 1;
-        }
-
-        glfwMakeContextCurrent(window);
-
-        // GLEW initialization
-        glewExperimental = GL_TRUE;
-        if (glewInit() != GLEW_OK) {
-            std::cerr << "Can't initialize GLEW" << std::endl;
-            return 1;
-        }
+        GLWindow window(1000);
 
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
         const GLuint program(load_program("src/shaders/point.vert", "src/shaders/point.frag"));
+        const GLint aspect_loc(glGetUniformLocation(program, "aspect"));
 
-
-        // 図形データ
+        // shape
         static constexpr Vertex vertex[] = {
             { -0.5f, -0.5f },
             { 0.5f, -0.5f },
@@ -248,14 +234,15 @@ public:
 
         std::unique_ptr<const GLShape> shape(new GLTriangleShape(2, 4, vertex));
 
-        while (glfwWindowShouldClose(window) == GL_FALSE) {
+        while (window.should_close() == GL_FALSE) {
             glClear(GL_COLOR_BUFFER_BIT);
             glUseProgram(program);
 
+            glUniform1f(aspect_loc, window.aspect());
+
             shape->draw();
 
-            glfwSwapBuffers(window);
-            glfwWaitEventsTimeout(1);
+            window.swap_buffers();
         }
 
         return 0;
