@@ -217,12 +217,15 @@ public:
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        GLWindow window(1000);
+        GLWindow window;
 
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
         const GLuint program(load_program("src/shaders/point.vert", "src/shaders/point.frag"));
-        const GLint aspect_loc(glGetUniformLocation(program, "aspect"));
+
+        const GLint sizeLoc(glGetUniformLocation(program, "size"));
+        const GLint scaleLoc(glGetUniformLocation(program, "scale"));
+        const GLint locationLoc(glGetUniformLocation(program, "location"));
 
         // shape
         static constexpr Vertex vertex[] = {
@@ -238,10 +241,16 @@ public:
             glClear(GL_COLOR_BUFFER_BIT);
             glUseProgram(program);
 
-            glUniform1f(aspect_loc, window.aspect());
+            glUniform2fv(sizeLoc, 1, window.size());
+            glUniform1f(scaleLoc, window.scale());
+            if (glfwGetMouseButton(window.data(), GLFW_MOUSE_BUTTON_1) != GLFW_RELEASE) {
+                glUniform2fv(locationLoc, 1, window.mouse_location());
+            }
+
+            auto a = window.size();
+            std::cout << a[0] << " " << a[1] << std::endl;
 
             shape->draw();
-
             window.swap_buffers();
         }
 
