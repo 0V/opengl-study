@@ -133,9 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="objects\gl_object.h" />
-    <ClInclude Include="objects\gl_shape.h" />
-    <ClInclude Include="objects\objects.h" />
     <ClInclude Include="src\gls.h" />
     <ClInclude Include="src\gl_renderer.h" />
     <ClInclude Include="src\gl_window.h" />
@@ -150,9 +147,6 @@
     <None Include=".clang-format" />
     <None Include="CppPropertySheet.props" />
     <None Include="packages.config" />
-    <None Include="shaders\point.frag" />
-    <None Include="shaders\point.vert" />
-    <None Include="shaders\point2.frag" />
     <None Include="src\shaders\point.frag" />
     <None Include="src\shaders\point.vert" />
     <None Include="src\shaders\point2.frag" />
