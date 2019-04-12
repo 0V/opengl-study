@@ -9,14 +9,32 @@ private:
     GLfloat size_[2];
     GLfloat scale_;
     GLfloat mouse_location_[2];
+    int key_status_;
 
     static void resize(GLFWwindow* const window, int width, int height) {
+        GLWindow* const instance(static_cast<GLWindow*>(glfwGetWindowUserPointer(window)));
+
         glViewport(0, 0, width, height);
 
-        GLWindow* const instance(static_cast<GLWindow*>(glfwGetWindowUserPointer(window)));
         if (instance != NULL) {
             instance->size_[0] = static_cast<GLfloat>(width);
             instance->size_[1] = static_cast<GLfloat>(height);
+        }
+    }
+
+    static void wheel(GLFWwindow* const window, double x, double y) {
+        GLWindow* const instance(static_cast<GLWindow*>(glfwGetWindowUserPointer(window)));
+
+        if (instance != NULL) {
+            instance->scale_ += static_cast<GLfloat>(y) * 10;
+        }
+    }
+
+    static void keyboard(GLFWwindow* window, int key, int scancode, int action, int mods) {
+        GLWindow* const instance(static_cast<GLWindow*>(glfwGetWindowUserPointer(window)));
+
+        if (instance != NULL) {
+            instance->key_status_ = action;
         }
     }
 
@@ -41,6 +59,8 @@ public:
         glfwSwapInterval(1);
         glfwSetWindowUserPointer(window_, this);
         glfwSetWindowSizeCallback(window_, resize);
+        glfwSetScrollCallback(window_, wheel);
+        glfwSetKeyCallback(window_, keyboard);
 
         resize(window_, width, height);
     }
@@ -61,7 +81,11 @@ public:
 
     void swap_buffers() {
         glfwSwapBuffers(window_);
-        glfwWaitEvents();
+
+        if (key_status_ == GLFW_RELEASE)
+            glfwWaitEvents();
+        else
+            glfwPollEvents();
 
         double x, y;
         glfwGetCursorPos(window_, &x, &y);
