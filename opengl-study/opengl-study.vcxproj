@@ -148,9 +148,6 @@
   <ItemGroup>
     <None Include=".clang-format" />
     <None Include="packages.config" />
-    <None Include="shaders\point.frag" />
-    <None Include="shaders\point.vert" />
-    <None Include="shaders\point2.frag" />
     <None Include="src\shaders\point.frag" />
     <None Include="src\shaders\point.vert" />
     <None Include="src\shaders\point2.frag" />
