@@ -2,6 +2,7 @@
 #include "renderer/renderer.h"
 
 int main() {
-    BufferSwapRenderer renderer;
+    SingleTriangleRenderer renderer;
+    //    WindowRenderer renderer;
     renderer.render();
 }

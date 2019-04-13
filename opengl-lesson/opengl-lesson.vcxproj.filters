@@ -30,6 +30,9 @@
     <ClInclude Include="src\renderer\renderer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\renderer\single_triangle_renderer.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cc">
@@ -38,5 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include=".clang-format" />
   </ItemGroup>
 </Project>

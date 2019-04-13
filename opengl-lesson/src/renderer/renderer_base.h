@@ -34,7 +34,6 @@ public:
     virtual ~RendererBase() {
     }
 
-
     virtual int render() {
         // OpenGL‚ğ‰Šú‰»‚·‚é
         if (glfwInit() == GL_FALSE) {

@@ -9,7 +9,6 @@ class BufferSwapRenderer : public RendererBase {
 protected:
     virtual void initializeGL() {
         glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
-
     }
 
     virtual void drawFrame() {
@@ -26,7 +25,6 @@ protected:
             }
             else {
                 glDrawBuffer(GL_BACK);
-
             }
 
             is_front = !is_front;

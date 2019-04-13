@@ -12,6 +12,6 @@ protected:
     }
 
     virtual void drawFrame() {
-        glClear(GL_COLOR_BUFFER_BIT);
+//        glClear(GL_COLOR_BUFFER_BIT);
     }
 };
