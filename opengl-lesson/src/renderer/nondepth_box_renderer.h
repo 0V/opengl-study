@@ -1,15 +1,13 @@
 #pragma once
 #include <cstdio>
 #include <cstdlib>
-#include <cmath>
 
 #define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
 
 #include "renderer_base.h"
 
-
-class BoxRenderer : public RendererBase {
+class NondepthBoxRenderer : public RendererBase {
 protected:
     // 立方体の頂点位置
     static constexpr float positions[8][3] = {
@@ -44,22 +42,21 @@ protected:
     };
 
     virtual void initializeGL() {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glEnable(GL_DEPTH_TEST);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
-    virtual void drawFrame() {
-        // 背景色と深度値のクリア
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    virtual void drawFrame() { // 背景色の描画
+        glClear(GL_COLOR_BUFFER_BIT);
 
-        // ビューポート変換の指定 (MacのLetinaディスプレイだと変になる)
+        // ビューポート変換の指定
         glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
 
-        // 座標の変換
+        // 射影変換行列
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluPerspective(45.0f, (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 1000.0f);
 
+        // モデルビュー変換行列
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         gluLookAt(3.0f, 4.0f, 5.0f, // 視点の位置
@@ -69,14 +66,15 @@ protected:
         // 立方体の描画
         glBegin(GL_TRIANGLES);
         for (int face = 0; face < 6; face++) {
-            //glColor3fv(colors[face]);
+            // 面の色
+            glColor3fv(colors[face]);
+
+            // 1つの面(四角形)は2つの三角形から成る
             for (int i = 0; i < 3; i++) {
-                glColor3fv(colors[face]);
                 glVertex3fv(positions[indices[face * 2 + 0][i]]);
             }
 
             for (int i = 0; i < 3; i++) {
-                glColor3fv(colors[face]);
                 glVertex3fv(positions[indices[face * 2 + 1][i]]);
             }
         }

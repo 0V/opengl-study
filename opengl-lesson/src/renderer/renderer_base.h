@@ -3,8 +3,10 @@
 #include <GLFW/glfw3.h>
 #include <cstdlib>
 
+const float Pi = std::atan(1.0) * 4.0;
+
 constexpr int WIN_WIDTH = 500;
-constexpr  int WIN_HEIGHT = 500;
+constexpr int WIN_HEIGHT = 500;
 const char* WIN_TITLE = "OpenGL Course";
 
 class RendererBase {

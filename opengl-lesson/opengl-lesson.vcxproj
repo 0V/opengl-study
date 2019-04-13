@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="src\renderer\box_renderer.h" />
     <ClInclude Include="src\renderer\buffer_swap_renderer.h" />
+    <ClInclude Include="src\renderer\nondepth_box_renderer.h" />
     <ClInclude Include="src\renderer\renderer.h" />
     <ClInclude Include="src\renderer\renderer_base.h" />
     <ClInclude Include="src\renderer\single_triangle_renderer.h" />

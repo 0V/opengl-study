@@ -2,7 +2,7 @@
 #include "renderer/renderer.h"
 
 int main() {
-    SingleTriangleRenderer renderer;
+    BoxRenderer renderer;
     //    WindowRenderer renderer;
     renderer.render();
 }
