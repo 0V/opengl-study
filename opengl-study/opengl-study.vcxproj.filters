@@ -52,7 +52,7 @@
     <None Include="src\shaders\point.vert" />
     <None Include="src\shaders\point2.frag" />
     <None Include="packages.config" />
-    <None Include="CppPropertySheet.props" />
+    <None Include="OpenGLCppPropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cc">
