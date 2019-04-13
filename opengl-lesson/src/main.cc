@@ -1,7 +1,7 @@
 #include<iostream>
-#include "lessons/renderer.h"
+#include "renderer/renderer.h"
 
 int main() {
-    Renderer renderer;
+    BufferSwapRenderer renderer;
     renderer.render();
 }

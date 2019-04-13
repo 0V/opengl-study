@@ -127,7 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\lessons\renderer.h" />
+    <ClInclude Include="src\renderer\box_renderer.h" />
+    <ClInclude Include="src\renderer\buffer_swap_renderer.h" />
+    <ClInclude Include="src\renderer\renderer_base.h" />
+    <ClInclude Include="src\renderer\window_renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cc" />
