@@ -136,6 +136,7 @@
     <ClInclude Include="src\gls.h" />
     <ClInclude Include="src\gl_renderer.h" />
     <ClInclude Include="src\gl_window.h" />
+    <ClInclude Include="src\lessons\RenderContext.h" />
     <ClInclude Include="src\objects\gl_loop_shape.h" />
     <ClInclude Include="src\objects\gl_object.h" />
     <ClInclude Include="src\objects\gl_shape.h" />
