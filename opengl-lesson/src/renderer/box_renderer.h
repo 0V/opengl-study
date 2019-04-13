@@ -48,23 +48,47 @@ protected:
         glEnable(GL_DEPTH_TEST);
     }
 
-    virtual void drawFrame() {
-        // 背景色と深度値のクリア
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // ビューポート変換の指定 (MacのLetinaディスプレイだと変になる)
-        glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
-
-        // 座標の変換
+    void setView() {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        gluPerspective(45.0f, (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 1000.0f);
+
+        //*
+        float fov = 45.0f;
+        float tant = std::tan(Pi / 180.0f * (fov * 0.5));
+        float aspect = (float)WIN_WIDTH / (float)WIN_HEIGHT;
+        float z_near = 0.1f;
+        float z_far = 1000.0f;
+        float mat[16] = { 0 };
+        mat[0] = 1.0f / (tant * aspect);
+        mat[5] = 1.0f / tant;
+        mat[10] = (z_near + z_far) / (z_near - z_far);
+        mat[14] = (2.0f * z_near * z_far) / (z_near - z_far);
+        mat[11] = -1.0f;
+
+        glMultMatrixf(mat);
+
+        /*/
+        gluPerspective(45.0f, (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 100.0f);
+        //        gluPerspective(45.0f, (float)WIN_WIDTH / (float)WIN_HEIGHT, 0.1f, 6.7f);
+        //*/
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         gluLookAt(3.0f, 4.0f, 5.0f, // 視点の位置
             0.0f, 0.0f, 0.0f,       // 見ている先
             0.0f, 1.0f, 0.0f);      // 視界の上方向
+
+    }
+
+    virtual void drawFrame() {
+        // 背景色と深度値のクリア
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+        // ビューポート変換の指定 (MacのLetinaディスプレイだと変になる)
+        glViewport(0, 0, WIN_WIDTH, WIN_HEIGHT);
+
+        setView();
 
         // 立方体の描画
         glBegin(GL_TRIANGLES);
